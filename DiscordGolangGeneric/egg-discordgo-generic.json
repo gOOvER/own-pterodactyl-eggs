@@ -1,0 +1,51 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2021-04-24T10:18:24+02:00",
+    "name": "discordgo generic",
+    "author": "jimmi@xevptech.com",
+    "description": "A generic golang egg.\r\n\r\nMeant to be customized before it is used.",
+    "features": null,
+    "images": [
+        "quay.io\/foksvhox\/pterodactyl-images",
+        "quay.io\/goover\/pterodactyl-images:debian_golang"
+    ],
+    "file_denylist": [],
+    "startup": "go version && go build turbo.go && .\/${EXECUTABLE}",
+    "config": {
+        "files": "{}",
+        "startup": "{}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# golang generic package\r\n\r\nif [ ! -d \/mnt\/server\/ ]; then\r\n    mkdir -p \/mnt\/server\/\r\nfi\r\n\r\napt update\r\napt upgrade -y\r\napt install -y gcc g++ libgcc1 lib32gcc1 gdb libc6 libstdc++6 git wget curl tar zip unzip binutils xz-utils liblzo2-2 bzip2 zlib1g net-tools netcat telnet libatomic1 libsdl1.2debian libsdl2-2.0-0 libfontconfig libicu63 libicu-dev libunwind8 libssl-dev sqlite3 libsqlite3-dev libmariadbclient-dev libzip4 locales apt-transport-https init-system-helpers libcurl3-gnutls libjsoncpp1 liblua5.1-0 libluajit-5.1-2 libsqlite3-0 libfluidsynth1\r\n\r\nexport PATH=$PATH:\/usr\/local\/go\/bin\r\n\r\necho \"---------------------------------------------------------------------\"\r\necho \"Installed Go Version:\"\r\ngo version\r\necho \"---------------------------------------------------------------------\"\r\n\r\n\r\ngo get ${GO_PACKAGE}\r\n\r\ncd src\/${GO_PACKAGE}\r\n\r\ngo get\r\n\r\ngo build\r\n\r\ncp -f ${EXECUTABLE} \/mnt\/server\/ \r\n export GOCACHE=\/home\/container\/",
+            "container": "golang:buster",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Go Package",
+            "description": "Go package to get and build",
+            "env_variable": "GO_PACKAGE",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string"
+        },
+        {
+            "name": "Executable",
+            "description": "This is the executable from the bot build.",
+            "env_variable": "EXECUTABLE",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|string"
+        }
+    ]
+}
