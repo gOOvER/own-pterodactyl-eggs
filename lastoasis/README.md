@@ -26,8 +26,8 @@ Last Oasis is a Nomadic Survival MMO. Earth has stopped rotating, and the last h
 ### SPECIAL NOTE
 To run the server, you must increase container_pid_limit in Pterodactyl config.yaml
 
-go to: /etc/pterodactyl
-edit config.yaml and change in line 65:
+go to: ```/etc/pterodactyl```
+edit ```config.yaml``` and change in line 65:
 
 ```container_pid_limit: 512```
 
@@ -41,7 +41,6 @@ restart wings: ```systemctl restart wings```
 
 ### Server Ports
 - Default server ports are listed below, but all two ports can be changed freely.
-
 - ***All two ports are required to be open/allocated for normal server behavior!***
 
 | Port | Default (UDP) |
