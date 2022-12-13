@@ -1,7 +1,7 @@
 name: 🥚 Egg Request
 description: Suggest a server to build an egg for
 title: "[Egg Request]: <Software/Game>"
-labels: ["egg request"]
+labels: ["egg-request"]
 body:
   - type: markdown
     attributes:
