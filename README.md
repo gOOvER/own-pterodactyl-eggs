@@ -1,6 +1,6 @@
-## gOOvER's Egg Repo
+# gOOvER's Egg Repo
 
 Here you find all my created eggs.
 
-# NOTE:
+## NOTE:
 Some eggs are paid
