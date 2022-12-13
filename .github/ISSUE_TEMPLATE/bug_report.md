@@ -6,6 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
+        If you see any of the following, go to [Discord](https://discord.gg/pterodactyl) and report your error in a support channel.
+        * `A fatal error was encountered while starting this server.`
+        * `No server egg configuration could be located; aborting startup.`
 
         Make sure there are no existing bug reports by searching the [repository issues](https://github.com/gOOvER/own-pterodactyl-eggs/issues?q=is%3Aopen+is%3Aissue+label%3ABug).
   - type: input
