@@ -2,5 +2,5 @@
 
 Here you find all my created eggs.
 
-#NOTE:
+# NOTE:
 Some eggs are paid
