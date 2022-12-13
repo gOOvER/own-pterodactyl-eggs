@@ -1,38 +1,85 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: 🐛 Bug Report
+description: Report an Egg issue
+title: "[Bug]: <Egg Name>"
+labels: ["bug", "not confirmed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+        Make sure there are no existing bug reports by searching the [repository issues](https://github.com/gOOvER/own-pterodactyl-eggs/issues?q=is%3Aopen+is%3Aissue+label%3ABug).
+  - type: input
+    id: panel-version
+    attributes:
+      label: Panel Version
+      description: Version number of your Panel (latest is not a version)
+      placeholder: 1.x.x
+    validations:
+      required: true
+  - type: input
+    id: wings-version
+    attributes:
+      label: Wings Version
+      description: Version number of your Wings (latest is not a version)
+      placeholder: 1.x.x
+    validations:
+      required: true
+  - type: input
+    id: service
+    attributes:
+      label: Service
+      description: Service you are experiencing issues with
+      placeholder: minecraft/factorio/etc
+    validations:
+      required: true
+  - type: dropdown
+    id: modified
+    attributes:
+      label: Modified
+      description: Did you add or change things, this includes startup configs/install scripts/variables
+      options:
+        - Yes, I modified the egg (will provide details below)
+        - No, I did not modify the egg
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen
+      placeholder: Install the server, start it, play
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened instead
+      placeholder: Server crashed with error X
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps To Reproduce
+      description: Step by step what to do to cause the issue
+      placeholder: |
+        Step 1 Set version to latest
+        Step 2 install
+        Step 3 Receive error X or Y
+    validations:
+      required: true
+  - type: input
+    id: install-logs
+    attributes:
+      label: Install logs
+      description: |
+        Run the command below on the SSH terminal of your Wings machine and provide the link to logs.
+        
+        ```
+        tail -n 1000 $(ls -Alrt /var/log/pterodactyl/install/*.log | tail -1 | sed 's/  */ /g' | cut -s -d' ' -f9) | nc pteropaste.com 99
+        ```
+      placeholder: |
+        https://pteropaste.com/exampleLogs
+    validations:
+      required: true
