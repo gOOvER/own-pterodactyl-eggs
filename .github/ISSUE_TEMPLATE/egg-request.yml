@@ -47,4 +47,4 @@ body:
         - "Yes"
         - "No"
     validations:
-    required: true
+      required: true
