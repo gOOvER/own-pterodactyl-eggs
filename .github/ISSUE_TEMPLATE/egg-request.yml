@@ -40,7 +40,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: expand
+    id: donate
     attributes:
       label: Are you willing to pay for this egg (Donation/Gamekey)?
       options:
