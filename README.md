@@ -1,9 +1,5 @@
-# WORK IN PROGRESS !!!!!!! 
-atm there are no eggs inside the dirs
+# OLD REPO !!!!!!!
 
-# gOOvER's Egg Repo
+you will find in future all my egg under:
 
-Here you find all my created eggs.
-
-## NOTE:
-Some eggs are paid
+https://github.com/pteroeggsx
