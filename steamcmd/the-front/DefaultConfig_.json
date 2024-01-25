@@ -1,0 +1,1735 @@
+{
+	"Root": [{
+		"TabList": [{
+				"TabID": "1",
+				"TabName": "Basic Server Settings",
+				"ControlList": [{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Server Name",
+						"GameParamName": "ServerName",
+						"Tooltips": "Displayed on the server list",
+						"Range": {
+							"DefaultValue": ""
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Server Password",
+						"GameParamName": "ServerPassword",
+						"Tooltips": "Players will need to enter this password to join the server. Can be left blank.",
+						"Range": {
+							"DefaultValue": ""
+						},
+						"bRequired": false,
+						"TabID": "1"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Server Player Limit",
+						"GameParamName": "QueueThreshold",
+						"Tooltips": "The max number of players on your server.",
+						"Range": {
+							"DefaultValue": 40,
+							"MinValue": 1,
+							"MaxValue": 80,
+							"StepValue": 1
+						},
+						"bRequired": true,
+						"TabID": "1"
+					},
+					{
+						"ControlType": 2,
+						"LabelControlName": "Gameplay Mode",
+						"GameParamName": "ServerFightModeType",
+						"Tooltips": "0 = PVP, 1 = PVE. In PVP mode, you will be able to attack other players and their structures. In PVE, you will not.",
+						"Range": {
+							"DefaultValue": "1",
+							"ArrayValue": [{
+									"Value": "0",
+									"LabelControlName": "0"
+								},
+								{
+									"Value": "1",
+									"LabelControlName": "1"
+								}
+							]
+						},
+						"bRequired": true,
+						"TabID": "1"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Damage self?",
+						"GameParamName": "IsCanSelfDamage",
+						"Tooltips": "Allows players to damage themselves.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "1"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Damage allies?",
+						"GameParamName": "IsCanFriendDamage",
+						"Tooltips": "Allows squadmates to damage each other.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Server save interval",
+						"GameParamName": "ClearSeverTime",
+						"Tooltips": "Sets the time at which all server data will be wiped. (Format: YYYY-MM-DD)",
+						"Range": {
+							"DefaultValue": ""
+						},
+						"bRequired": false,
+						"TabID": "1"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Start server using P2P mode",
+						"GameParamName": "UseSteamSocket",
+						"Tooltips": "Use Steam servers for network penetration. Enable this if you don't have a public IP but you want to allow players from outside your network to join your server. If disabled, only you and other players on your LAN can join. If you have a public IP, you do not need to enable this. Enabling this feature will affect latency. When Steam servers are busy, you may not be able to join this server.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": false,
+						"bNeedValue": false,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Game Port",
+						"GameParamName": "Port",
+						"Tooltips": "When hosting multiple servers, the game port of each server must be different. This cannot be the same value as the other port.",
+						"Range": {
+							"DefaultValue": "5001"
+						},
+						"bRequired": true,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Lobby Port",
+						"GameParamName": "BeaconPort",
+						"Tooltips": "When hosting multiple servers, the lobby port of each server must be different. This cannot be the same value as the other port.",
+						"Range": {
+							"DefaultValue": "5002"
+						},
+						"bRequired": true,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Close server listening port",
+						"GameParamName": "ShutDownServicePort",
+						"Tooltips": "When hosting multiple servers, the closed server listening port of each server must be different. This cannot be the same value as the other port.",
+						"Range": {
+							"DefaultValue": "5003"
+						},
+						"bRequired": true,
+						"TabID": "1"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Steam Remote Port",
+						"GameParamName": "QueryPort",
+						"Tooltips": "Range:27015-27050(Please modify with caution for non-professionals),When hosting multiple servers, the steam remote port of each server must be different. This cannot be the same value as the other port.",
+						"Range": {
+							"DefaultValue": "27015"
+						},
+						"bRequired": true,
+						"TabID": "1"
+					}
+				]
+			},
+			{
+				"TabID": "2",
+				"TabName": "Adv. Server Settings",
+				"ControlList": [{
+						"ControlType": 6,
+						"LabelControlName": "Server save interval",
+						"GameParamName": "SaveWorldInterval",
+						"Tooltips": "Server archive interval (in seconds)",
+						"Range": {
+							"DefaultValue": 300,
+							"MinValue": 150,
+							"MaxValue": 600,
+							"StepValue": 1
+						},
+						"bRequired": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Item stack rate",
+						"GameParamName": "GMOverlapRatio",
+						"Tooltips": "Stack limit for each type of item.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Unlock all recipes and talents for new characters?",
+						"GameParamName": "IsUnLockAllTalentAndRecipe",
+						"Tooltips": "When enabled, all recipes and talents will be unlocked and available to new characters.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Starting inventory size",
+						"GameParamName": "GMBagInitGirdNum",
+						"Tooltips": "How many inventory slots a new character gets by default.",
+						"Range": {
+							"DefaultValue": 40,
+							"MinValue": 1,
+							"MaxValue": 80,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Enable novice protection?",
+						"GameParamName": "GreenHand",
+						"Tooltips": "When enabled, new characters will receive novice protection.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Items on respawn",
+						"GameParamName": "CharacterInitItem",
+						"Tooltips": "Which items a character gets on respawn. (Format: Item ID, Quality, Amount.) Use semicolons for each item.",
+						"Range": {
+							"DefaultValue": ""
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 2,
+						"LabelControlName": "Drop items on death?",
+						"GameParamName": "GMDeathDropMode",
+						"Tooltips": "0 = No drops, 1 = Drop all, 2 = Drop inventory (does not include equipped or hotkey items)）",
+						"Range": {
+							"DefaultValue": "1",
+							"ArrayValue": [{
+									"Value": "0",
+									"LabelControlName": "0"
+								},
+								{
+									"Value": "1",
+									"LabelControlName": "1"
+								},
+								{
+									"Value": "2",
+									"LabelControlName": "2"
+								}
+							]
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 6,
+						"LabelControlName": "Dropped items despawn after death",
+						"GameParamName": "GMDeathInventoryLifeSpan",
+						"Tooltips": "Items dropped on death will disappear after this amount of time (in seconds)",
+						"Range": {
+							"DefaultValue": 1800,
+							"MinValue": 0,
+							"MaxValue": 3600,
+							"StepValue": 10
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 2,
+						"LabelControlName": "Corpse loot permission",
+						"GameParamName": "CorpsePickAuthority",
+						"Tooltips": "Set which players can loot a corpse. 0 = self only; 1 = squadmates; 2 = everyone",
+						"Range": {
+							"DefaultValue": "2",
+							"ArrayValue": [{
+									"Value": "0",
+									"LabelControlName": "0"
+								},
+								{
+									"Value": "1",
+									"LabelControlName": "1"
+								},
+								{
+									"Value": "2",
+									"LabelControlName": "2"
+								}
+							]
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Creatures/Constructs drop items on death?",
+						"GameParamName": "GMCanDropItem",
+						"Tooltips": "When enabled, creatures and Constructs will drop items when killed/destroyed.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Allow item discard?",
+						"GameParamName": "GMCanDiscardItem",
+						"Tooltips": "Set whether players can discard items.",
+						"Range": {
+							"DefaultValue": true
+						},
+
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Discarded items despawn",
+						"GameParamName": "GMDiscardBoxLifeSpan",
+						"Tooltips": "Items discarded will disappear after this amount of time (in seconds)",
+						"Range": {
+							"DefaultValue": 300,
+							"MinValue": 0,
+							"MaxValue": 600,
+							"StepValue": 10
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Initial respawn cooldown",
+						"GameParamName": "GMRebirthBaseCD",
+						"Tooltips": "Basic revival cooldown duration (in seconds)",
+						"Range": {
+							"DefaultValue": 10,
+							"MinValue": 0,
+							"MaxValue": 60,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Respawn cooldown penalty",
+						"GameParamName": "GMRebirthExtraCD",
+						"Tooltips": "Amount by which revival cooldown increases after multiple deaths (in seconds)",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 20,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Death penalty times",
+						"GameParamName": "GMPenaltiesMaxNum",
+						"Tooltips": "Death stack limit",
+						"Range": {
+							"DefaultValue": 5,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Death penalty respawn time",
+						"GameParamName": "GMPenaltiesCD",
+						"Tooltips": "Time after which stacked revival cooldowns are reset (in seconds)",
+						"Range": {
+							"DefaultValue": 600,
+							"MinValue": 0,
+							"MaxValue": 600,
+							"StepValue": 10
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Set Construct decay",
+						"GameParamName": "ConstructEnableRot",
+						"Tooltips": "When enabled, Constructs will decay.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Monster raid cooldown rate",
+						"GameParamName": "GMAttackCityCdRatio",
+						"Tooltips": "Multiplies the cooldown time between supply deliveries.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Show all Spacetime Beacons",
+						"GameParamName": "OpenAllHouseFlag",
+						"Tooltips": "Displays the location of other players' Beacons on the map.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+				    {
+						"ControlType": 5,
+						"LabelControlName": "Allow chat (incl. voice)?",
+						"GameParamName": "IsCanChat",
+						"Tooltips": "When disabled, prevents players from sending chat messages in-game.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Toggles whether blood effects appear when damaged.",
+						"GameParamName": "IsShowBlood",
+						"Tooltips": "Toggles whether blood effects appear when damaged.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Enable profanity?",
+						"GameParamName": "SensitiveWords",
+						"Tooltips": "When disable, profanity will be blocked.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Enable wounded state?",
+						"GameParamName": "HealthDyingState",
+						"Tooltips": "Enables whether wounded state is triggered when HP falls to 0, or player immediately dies.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Enable anticheat?",
+						"GameParamName": "UseACE",
+						"Tooltips": "Toggles anticheat.",
+						"Range": {
+							"DefaultValue": true
+						},
+						"bRequired": true,
+						"bNeedValue": true,
+						"TabID": "2"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 8,
+						"LabelControlName": "Add admin account",
+						"GameParamName": "ServerAdminAccounts",
+						"Tooltips": "Enter a 17-digit Steam ID. Use semicolons between each ID. GM level defaults to highest level (Lv. 25)",
+						"Range": {
+							"DefaultValue": ""
+						},
+						"bRequired": false,
+						"TabID": "2"
+					},
+					{
+						"ControlType": 5,
+						"LabelControlName": "Label admin",
+						"GameParamName": "IsShowGmTitle",
+						"Tooltips": "Toggles special admin icon.",
+						"Range": {
+							"DefaultValue": false
+						},
+						"bRequired": false,
+						"bNeedValue": true,
+						"TabID": "2"
+					}
+				]
+			},
+			{
+				"TabID": "3",
+				"TabName": "Survival",
+				"ControlList": [{
+						"ControlType": 7,
+						"LabelControlName": "Heat RES Boost rate",
+						"GameParamName": "PlayerHotDefAddRate",
+						"Tooltips": "Multiplies character Heat RES.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Cold RES Boost rate",
+						"GameParamName": "PlayerIceDefAddRate",
+						"Tooltips": "Multiplies character Cold RES.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Friendly name display distance",
+						"GameParamName": "HeadNameDisplayDist_Team",
+						"Tooltips": "Max distance at which you can see a squadmate's name (in meters)",
+						"Range": {
+							"DefaultValue": 200,
+							"MinValue": 0,
+							"MaxValue": 400,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Non-friendly name display distance",
+						"GameParamName": "HeadNameDisplayDist_Enemy",
+						"Tooltips": "Max distance at which you can see a non-squadmate's name (in meters)",
+						"Range": {
+							"DefaultValue": 20,
+							"MinValue": 0,
+							"MaxValue": 40,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Inventory item DUR death penalty",
+						"GameParamName": "PlayerDeathAvatarItemDurableRate",
+						"Tooltips": "On death, the Durability of equipped items will fall by max Durability times this amount (does not affect drops)",
+						"Range": {
+							"DefaultValue": 0,
+							"MinValue": 0,
+							"MaxValue": 1,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Hotbar item DUR death penalty",
+						"GameParamName": "PlayerDeatShortcutItemDurableRate",
+						"Tooltips": "On death, the Durability of hotbar items will fall by max Durability times this amount (does not affect drops)",
+						"Range": {
+							"DefaultValue": 0,
+							"MinValue": 0,
+							"MaxValue": 1,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Crafting/repair time rate",
+						"GameParamName": "GMCraftTimeRate",
+						"Tooltips": "Multiplies item crafting/repair time.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "All XP rate",
+						"GameParamName": "PlayerAddExpRate",
+						"Tooltips": "Multiplies all XP earned.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Kill XP rate",
+						"GameParamName": "PlayerKillAddExpRate",
+						"Tooltips": "Multiplies XP earned from killing monsters",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Collection XP rate",
+						"GameParamName": "PlayerFarmAddExpRate",
+						"Tooltips": "Multiplies XP earned from collecting resources",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlTypeName": "",
+						"ControlType": 7,
+						"LabelControlName": "Crafting XP rate",
+						"GameParamName": "PlayerCraftAddExpRate",
+						"Tooltips": "Multiplies XP earned from crafting items",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Speed rate",
+						"GameParamName": "MoveSpeedRate",
+						"Tooltips": "Multiplies movement speed",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 5,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Jump height rate",
+						"GameParamName": "JumpRate",
+						"Tooltips": "Multiplies jump height",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 5,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Fall DMG boost",
+						"GameParamName": "PlayerLandedDamageRate",
+						"Tooltips": "Multiplies damage taken from falls.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "HP rate",
+						"GameParamName": "PlayerMaxHealthRate",
+						"Tooltips": "Multiplies max HP.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "HP recovery rate",
+						"GameParamName": "HealthRecoverRate",
+						"Tooltips": "HP recovery will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Stamina rate",
+						"GameParamName": "PlayerMaxStaminaRate",
+						"Tooltips": "Multiplies max stamina.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Stamina recovery rate",
+						"GameParamName": "StaminaRecoverRate",
+						"Tooltips": "Stamina recovery will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Stamina loss rate",
+						"GameParamName": "PlayerStaminaCostRate",
+						"Tooltips": "Multiplies stamina consumption speed.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Max fullness multiplier",
+						"GameParamName": "PlayerMaxHungerRate",
+						"Tooltips": "Max Fullness will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Fullness loss rate",
+						"GameParamName": "GMHungerDecRatio",
+						"Tooltips": "Multiplies Fullness consumption speed.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Fullness from food rate",
+						"GameParamName": "GMBodyHungerAddRate",
+						"Tooltips": "Multiplies amount of Fullness recovered by eating.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Max hydration multiplier",
+						"GameParamName": "MaxBodyWaterRate",
+						"Tooltips": "Max Hydration will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Hydration loss rate",
+						"GameParamName": "GMWaterDecRatio",
+						"Tooltips": "Multiplies Hydration consumption speed.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Hydration from water rate",
+						"GameParamName": "GMBodyWaterAddRate",
+						"Tooltips": "Multiplies amount of Hydration recovered by drinking.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Max O2 multiplier",
+						"GameParamName": "MaxBreathRate",
+						"Tooltips": "Multiplies max Oxygen.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Max Oxygen will be multiplied by this value.",
+						"GameParamName": "BreathRecoverRate",
+						"Tooltips": "Max Oxygen will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "O2 loss speed",
+						"GameParamName": "PlayerBreathCostRate",
+						"Tooltips": "Multiplies Oxygen consumption speed.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Med recovery rate",
+						"GameParamName": "GMPlayerHealthRate",
+						"Tooltips": "Multiplies amount of HP recovered from meds.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Food and med duration rate",
+						"GameParamName": "GMFoodDragDurationRate",
+						"Tooltips": "Multiplies the duration of effect of food and meds.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "3"
+					}
+				]
+			},
+			{
+				"TabID": "4",
+				"TabName": "NPCs",
+				"ControlList": [{
+						"ControlType": 6,
+						"LabelControlName": "All monster respawn time rate",
+						"GameParamName": "NpcRespawnRatio",
+						"Tooltips": "Multiplies time before dead wild NPCs can respawn.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Monster NPC corpse despawn time",
+						"GameParamName": "AnimalBodyStayTime",
+						"Tooltips": "Animal NPC corpses will disappear after this amount of time (in seconds)",
+						"Range": {
+							"DefaultValue": 300,
+							"MinValue": 10,
+							"MaxValue": 300,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Human NPC corpse despawn time",
+						"GameParamName": "HumanBodyStayTime",
+						"Tooltips": "Human NPC corpses will disappear after this amount of time (in seconds)",
+						"Range": {
+							"DefaultValue": 10,
+							"MinValue": 0,
+							"MaxValue": 60,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Wild NPC corpse drop rate",
+						"GameParamName": "GMNPCLootableItemRatio",
+						"Tooltips": "Multiplies the amount of items dropped by a wild NPC on death.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Wild NPC starting lv. rate",
+						"GameParamName": "NpcSpawnLevelRatio",
+						"Tooltips": "Multiplies the level of wild NPCs, making them more powerful.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Wild NPC DMG rate",
+						"GameParamName": "WildNPCDamageRate",
+						"Tooltips": "Multiplies the damage dealt by wild NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Wild NPC HP rate",
+						"GameParamName": "WildNPCHealthRate",
+						"Tooltips": "Multiplies the HP of wild NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Wild NPC speed rate",
+						"GameParamName": "WildNPCSpeedRate",
+						"Tooltips": "Multiplies the movement speed of wild NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 5,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Raid NPC lv. rate",
+						"GameParamName": "CityNPCLevelRate",
+						"Tooltips": "Multiplies the level of raid NPCs, making them more powerful.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Raid NPC DMG rate",
+						"GameParamName": "CityNPCDamageRate",
+						"Tooltips": "Multiplies the damage dealt by raid NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Raid NPC HP rate",
+						"GameParamName": "CityNPCHealthRate",
+						"Tooltips": "Multiplies the HP of raid NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Raid NPC speed multiplier",
+						"GameParamName": "CityNPCSpeedRate",
+						"Tooltips": "Multiplies the movement speed of raid NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 5,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Raid NPC amt rate",
+						"GameParamName": "CityNPCNumRate",
+						"Tooltips": "Multiplies the total amount of raid NPCs summoned each round.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "NPC name display distance",
+						"GameParamName": "NpcDisplayDistance",
+						"Tooltips": "Max distance at which you can see an NPC's name (in meters)",
+						"Range": {
+							"DefaultValue": 50,
+							"MinValue": 0,
+							"MaxValue": 50,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Collectible resource spawn rate",
+						"GameParamName": "GMInventoryGainRate",
+						"Tooltips": "Multiplies the amount of resources received upon collection.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Raid corpse drop rate",
+						"GameParamName": "GMCityATKNPCLootItemRatio",
+						"Tooltips": "Multiplies the amount of items dropped by a raid NPC on death.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "4"
+					}
+				]
+			},
+			{
+				"TabID": "5",
+				"TabName": "Construct DEF",
+				"ControlList": [{
+						"ControlType": 6,
+						"LabelControlName": "Player Beacon limit",
+						"GameParamName": "GMMaxHouseFlagNumber",
+						"Tooltips": "Max number of Beacons each player can build.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 5,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Player work Construct limit",
+						"GameParamName": "GMSetGJConstructMaxNumRatio",
+						"Tooltips": "Max number of work-type Constructs each player can build will be multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 10,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Beacon trap limit",
+						"GameParamName": "GMHFTrapMaxNum",
+						"Tooltips": "Max number of traps that can be within Beacon coverage.",
+						"Range": {
+							"DefaultValue": 0,
+							"MinValue": 0,
+							"MaxValue": 10000,
+							"StepValue": 10
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Beacon turret limit",
+						"GameParamName": "GMHFTurretMaxNum",
+						"Tooltips": "Max number of turrets that can be within Beacon coverage.",
+						"Range": {
+							"DefaultValue": 0,
+							"MinValue": 0,
+							"MaxValue": 10000,
+							"StepValue": 10
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Non-trap Construct DMG RES rate",
+						"GameParamName": "GMConstructDefenseRatio",
+						"Tooltips": "Damage taken is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Trap DMG RES rate",
+						"GameParamName": "GMTrapDefenseRatio",
+						"Tooltips": "Damage taken is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Turret DMG RES rate",
+						"GameParamName": "GMTurretDefenseRatio",
+						"Tooltips": "Damage taken is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Trap DMG rate",
+						"GameParamName": "GMTrapDamageRatio",
+						"Tooltips": "Multiplies damage dealt by traps.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Turret DMG rate",
+						"GameParamName": "GMTurretDamageRatio",
+						"Tooltips": "Multiplies damage dealt by turrets.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Construct DUR rate",
+						"GameParamName": "GMConstructMaxHealthRatio",
+						"Tooltips": "Multiplies the max Durability of Constructs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0.1,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Construct DUR recovery rate",
+						"GameParamName": "GMConstructReturnHPRatio",
+						"Tooltips": "Multiplies the Durability recovery speed of placed Constructs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Spacetime Beacon auto-repair rate",
+						"GameParamName": "GMHouseFlagRepairHealthRatio",
+						"Tooltips": "Multiplies the Durability recovery speed of Constructs within auto-repair range of a Beacon.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Oil Well work production rate",
+						"GameParamName": "GMTTC_Oil_Rate",
+						"Tooltips": "Multiplies resources collected from Oil Wells.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Dew Collector work production rate",
+						"GameParamName": "GMWaterCollecter_Rate",
+						"Tooltips": "Multiplies resources collected from Dew Collectors.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Mine work production rate",
+						"GameParamName": "GMTTC_Ore_Rate",
+						"Tooltips": "Multiplies resources collected from Mines.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Fish Basket work production rate",
+						"GameParamName": "GMTTC_Fish_Rate",
+						"Tooltips": "Multiplies resources collected from Fish Baskets.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Beacon player gun DMG RES rate",
+						"GameParamName": "CHFDamagedByPlayer",
+						"Tooltips": "Damage that beacons take from player firearms is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Beacon player vehicle DMG RES rate",
+						"GameParamName": "CHFDamagedByVehicle",
+						"Tooltips": "Damage that beacons take from player vehicles is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Beacon NPC DMG RES rate",
+						"GameParamName": "CHFDamagedByNpc",
+						"Tooltips": "Damage that beacons take from NPC attacks is multiplied by this value.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Beacon daily non-protection duration",
+						"GameParamName": "GMHouseFlagExcitantTime",
+						"Tooltips": "Sets the amount of time that beacons can be attacked. The starting time of this period is set in-game.",
+						"Range": {
+							"DefaultValue": 3,
+							"MinValue": 0,
+							"MaxValue": 24,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					}
+				]
+			},
+			{
+				"TabID": "6",
+				"TabName": "Resources",
+				"ControlList": [{
+						"ControlType": 6,
+						"LabelControlName": "Resource collection rate",
+						"GameParamName": "GMMaxRetrieveProductsRate",
+						"Tooltips": "Controls max gains from collection. This value must be bigger than other collection rates.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "5"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Wood production rate",
+						"GameParamName": "GMTreeGainRate",
+						"Tooltips": "Multiplies amount of wood collected.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Plant production rate",
+						"GameParamName": "GMBushGainRate",
+						"Tooltips": "Multiplies amount of plants collected.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Ore production rate",
+						"GameParamName": "GMOreGainRate",
+						"Tooltips": "Multiplies amount of ore collected.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Crop production rate",
+						"GameParamName": "GMCropVegetableReapRatio",
+						"Tooltips": "Multiplies amount of crops collected.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Animal production rate",
+						"GameParamName": "GMFleshGainRate",
+						"Tooltips": "Multiplies amount of items collected from corpses.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 1,
+							"MaxValue": 1000,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Crop growth speed",
+						"GameParamName": "GMCropVegetableGrowRatio",
+						"Tooltips": "Multiplies growth speed of planted crops.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "6"
+					}
+				]
+			},
+			{
+				"TabID": "7",
+				"TabName": "Combat",
+				"ControlList": [{
+						"ControlType": 7,
+						"LabelControlName": "Melee DMG vs. NPC rate",
+						"GameParamName": "GMMeleeNpcDamageRatio",
+						"Tooltips": "Multiplies melee weapon damage that characters deal to NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Ranged DMG vs. NPC rate",
+						"GameParamName": "GMRangedNpcDamageRatio",
+						"Tooltips": "Multiplies ranged weapon damage that characters deal to NPCs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Melee PVP DMG rate",
+						"GameParamName": "GMMeleePlayerDamageRatio",
+						"Tooltips": "Multiplies melee weapon damage that characters deal to players.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Ranged PVP DMG rate",
+						"GameParamName": "GMRangedPlayerDamageRatio",
+						"Tooltips": "Multiplies ranged weapon damage that characters deal to players.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Melee DMG vs. Constructs rate",
+						"GameParamName": "GMMeleeConstructDamageRatio",
+						"Tooltips": "Multiplies melee weapon damage that characters deal to Constructs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Ranged DMG vs. Constructs rate",
+						"GameParamName": "GMRangedConstructDamageRatio",
+						"Tooltips": "Multiplies ranged weapon damage that characters deal to Constructs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Collection tool DMG multiplier",
+						"GameParamName": "GMToolDamageRate",
+						"Tooltips": "Multiplies damage that tools deal to resources.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Durability loss multiplier",
+						"GameParamName": "GMDurabilityCostRatio",
+						"Tooltips": "Multiplies durability lost when using tools, weapons, and armor.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 10,
+							"StepValue": 0.1
+						},
+						"bRequired": false,
+						"TabID": "7"
+					}
+				]
+			},
+			{
+				"TabID": "8",
+				"TabName": "Vehicles",
+				"ControlList": [{
+						"ControlType": 7,
+						"LabelControlName": "Vehicle vs. player DMG rate",
+						"GameParamName": "GMVehiclePlayerDamageRatio",
+						"Tooltips": "Multiplies the amount of damage vehicles deal to players.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "8"
+					},
+					{
+						"ControlType": 7,
+						"LabelControlName": "Vehicle vs. Construct DMG rate",
+						"GameParamName": "GMVehicleConstructDamageRatio",
+						"Tooltips": "Multiplies the amount of damage vehicles deal to Constructs.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "9"
+					},
+					{
+						"ControlType": 6,
+						"LabelControlName": "Vehicle collection rate",
+						"GameParamName": "GMVehicleDamageRate",
+						"Tooltips": "Multiplies the amount of resources collected by vehicles.",
+						"Range": {
+							"DefaultValue": 1,
+							"MinValue": 0,
+							"MaxValue": 100,
+							"StepValue": 1
+						},
+						"bRequired": false,
+						"TabID": "9"
+					}
+				]
+			}
+		]
+	}]
+}

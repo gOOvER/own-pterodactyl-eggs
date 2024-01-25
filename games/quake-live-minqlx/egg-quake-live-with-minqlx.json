@@ -1,0 +1,164 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-12-30T12:41:39+01:00",
+    "name": "Quake Live with minqlx",
+    "author": "eggs@goover.dev",
+    "description": "Quake Live with minqlx support",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/goover\/games:quakeliveqlx": "ghcr.io\/goover\/games:quakeliveqlx"
+    },
+    "file_denylist": [],
+    "startup": "export LD_PRELOAD=$LD_PRELOAD:.\/minqlx.x64.so; .\/qzeroded.x64 +set zmq_stats_enable 1 +set net_port \"{{SERVER_PORT}}\" +set sv_hostname \"{{SERVER_NAME}}\" +set sv_serverType \"{{SERVER_TYPE}}\" +set g_password \"{{PASSWORD}}\" +sv_fps \"{{FPS}}\" +set g_gametype \"{{G_GAMETYPE}}\" +set qlx_redisAddress \"{{REDIS_HOST}}:{{REDIS_PORT}}:{{REDIS_PORT}}\" +set qlx_redisPassword \"{{REDIS_PASSWORD}}\" +set qlx_owner \"{{QLX_OWNER}}\" +set qlx_plugins \"{{QLX_PLUGINS}}\" +set qlx_redisDatabase \"{{REDIS_DATABASE}}\"",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"INFO: We're good to go!\"\r\n}",
+        "logs": "{}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\nclear\r\nRED='\\033[0;31m'\r\nGREEN='\\033[0;32m'\r\nYELLOW='\\033[1;33m'\r\nBLUE='\\033[0;34m'\r\nNC='\\033[0m'\r\n\r\nexport DEBIAN_FRONTEND=noninteractive\r\n#export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring\r\n#export PIP_ROOT_USER_ACTION=ignore\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}Quake live Installscript${NC}\"\r\necho -e \"${YELLOW}Egg by gOOvER | https:\/\/goover.dev${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates jq dos2unix\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}download and install steamcmd. please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\n## install game using steamcmd\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}install game using steamcmd. please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update 1007 +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n# add below your custom commands if needed\r\n\r\n#pip install redis --no-input\r\n\r\n#minqlx\r\npython --version\r\ncd \/mnt\/server\r\nrm -rf minqlx\r\ngit clone https:\/\/github.com\/MinoMino\/minqlx.git\r\ncd minqlx\r\nmake\r\nyes | cp -rf bin\/* \/mnt\/server\r\nyes | cp -rf $HOME\/minqlx\/\/bin\/minqlx.x64.so $HOME\/linux64 \r\ncd \/mnt\/server\r\n\r\n#minqlx plugins\r\nrm -rf \/mnt\/server\/minqlx-plugins\r\ngit clone https:\/\/github.com\/MinoMino\/minqlx-plugins.git\r\npython3 -m pip install -r minqlx-plugins\/requirements.txt --break-system-packages\r\n\r\n# adding extra plugins\r\ncd \/mnt\/server\/minqlx-plugins\r\n\r\n# branding\r\nwget https:\/\/raw.githubusercontent.com\/tjone270\/Quake-Live\/master\/minqlx-plugins\/branding.py\r\n\r\n#centerprint\r\nwget https:\/\/raw.githubusercontent.com\/dsverdlo\/minqlx-plugins\/master\/centerprint.py\r\n\r\n#onjoin\r\nwget https:\/\/raw.githubusercontent.com\/tjone270\/Quake-Live\/master\/minqlx-plugins\/onjoin.py\r\n\r\n#midair_only\r\nwget https:\/\/raw.githubusercontent.com\/x0rnn\/minqlx-plugins\/master\/midair_only.py\r\n\r\n#mydiscordbot\r\nwget https:\/\/raw.githubusercontent.com\/mgaertne\/minqlx-plugin-tests\/master\/src\/main\/python\/mydiscordbot.py\r\n\r\n#myessentials\r\nwget https:\/\/raw.githubusercontent.com\/dsverdlo\/minqlx-plugins\/master\/myessentials.py\r\n\r\n#myfun (replacement for fun.py)\r\nwget https:\/\/raw.githubusercontent.com\/BarelyMiSSeD\/minqlx-plugins\/master\/myFun\/myFun.py\r\n\r\n#playerinfo\r\nwget https:\/\/raw.githubusercontent.com\/dsverdlo\/minqlx-plugins\/master\/player_info.py\r\n\r\n#pummel\r\nwget https:\/\/raw.githubusercontent.com\/mattiZed\/minqlx-plugins\/master\/pummel.py\r\n\r\n#q3resolver\r\nwget https:\/\/raw.githubusercontent.com\/tjone270\/Quake-Live\/master\/minqlx-plugins\/q3resolver.py\r\n\r\n#stats\r\nwget https:\/\/raw.githubusercontent.com\/x0rnn\/minqlx-plugins\/master\/stats.py\r\n\r\n#specs\r\nwget https:\/\/raw.githubusercontent.com\/x0rnn\/minqlx-plugins\/master\/specs.py\r\n\r\n#sv_fps\r\nwget https:\/\/raw.githubusercontent.com\/tjone270\/Quake-Live\/master\/minqlx-plugins\/sv_fps.py\r\n\r\n#translate\r\nwget https:\/\/github.com\/dsverdlo\/minqlx-plugins\/blob\/master\/translate.py\r\n\r\n#uberstats\r\nwget https:\/\/raw.githubusercontent.com\/roasticle\/minqlx-plugins\/master\/uberstats.py\r\n\r\n#votestats\r\nwget https:\/\/raw.githubusercontent.com\/tjone270\/Quake-Live\/master\/minqlx-plugins\/votestats.py\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\n## install end\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${GREEN}Installation completed...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"",
+            "container": "ghcr.io\/goover\/installers:python39",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "ld lib path",
+            "description": "",
+            "env_variable": "LD_LIBRARY_PATH",
+            "default_value": ".\/linux64",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "The Name that will show up in the Serverbrowser",
+            "env_variable": "SERVER_NAME",
+            "default_value": "QuakeLive LanParty Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:70",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Type",
+            "description": "0 = Offline, 1 = LAN, 2 = Internet",
+            "env_variable": "SERVER_TYPE",
+            "default_value": "2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:2",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Set a server-wide password, and stop all users from connecting without it",
+            "env_variable": "PASSWORD",
+            "default_value": "lanparty",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "FPS",
+            "description": "Change how many frames the server runs per second. WARNING: Has not been tested extensively, and will have a direct impact on CPU and network usage!",
+            "env_variable": "FPS",
+            "default_value": "120",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Game Type",
+            "description": "0 = Free for All\r\n1 = Tournament\r\n2 = Race\r\n3 = Team Deathmatch\r\n4 = Clan Arena\r\n5 = Capture the Flag\r\n6 = One-Flag CTF\r\n7 = Overload\r\n8 = Harvester\r\n9 = Freeze Tag",
+            "env_variable": "G_GAMETYPE",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:9",
+            "field_type": "text"
+        },
+        {
+            "name": "Redis host",
+            "description": "minqlx makes use of redis. You already have a Redis server instance running at pterodactyl host so you need to edit host's \/etc\/redis\/redis.conf and set\r\n\r\nbind 0.0.0.0\r\nset protectedMode no\r\nrequirepass yourpassword \r\n\r\n...and maybe reset ufw with sudo ufw reset\r\n\r\nYou need to set that password for pterodactyl to work so edit \/var\/www\/pterodactyl\/.env and set the new redis password. Otherwise pterodactyl panel will stop working.\r\n\r\n172.18.0.1 is the host's ip from within a container, so you might not need to change it.",
+            "env_variable": "REDIS_HOST",
+            "default_value": "172.18.0.1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:40",
+            "field_type": "text"
+        },
+        {
+            "name": "Redis password",
+            "description": "",
+            "env_variable": "REDIS_PASSWORD",
+            "default_value": "lanpartyredis",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Redis port",
+            "description": "",
+            "env_variable": "REDIS_PORT",
+            "default_value": "6379",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:65565",
+            "field_type": "text"
+        },
+        {
+            "name": "qlx_owner",
+            "description": "steamID64 of the owner. Get yours at https:\/\/www.steamidfinder.com\/",
+            "env_variable": "QLX_OWNER",
+            "default_value": "76561198004911379",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "qlx plugins",
+            "description": "A comma-separated list of plugins that should be loaded at launch.\r\n    Default: plugin_manager, essentials, motd, permission, ban, silence, clan, names, log, workshop, balance, fun\r\nhttps:\/\/github.com\/MinoMino\/minqlx-plugins",
+            "env_variable": "QLX_PLUGINS",
+            "default_value": "plugin_manager, essentials, motd, permission, ban, silence, clan, names, log, workshop, balance, fun",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:2000",
+            "field_type": "text"
+        },
+        {
+            "name": "Redis database",
+            "description": "id of the redis db used for minqlx stats. Default 1 as 0 is used for pterodactyl",
+            "env_variable": "REDIS_DATABASE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:16",
+            "field_type": "text"
+        },
+        {
+            "name": "SRCDS_APPID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "349090",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        }
+    ]
+}

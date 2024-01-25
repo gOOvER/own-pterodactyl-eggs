@@ -1,0 +1,344 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-12-25T14:20:04+01:00",
+    "name": "Miscreated",
+    "author": "eggs@goover.dev",
+    "description": "Miscreated is a multiplayer online hardcore survival game set in a post-apocalyptic future. You will need to survive against mutants, players, and even mother nature herself.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/goover\/wine:stable": "ghcr.io\/goover\/wine:stable"
+    },
+    "file_denylist": [],
+    "startup": "wine .\/Bin64_dedicated\/MiscreatedServer.exe -sv_port {{SERVER_PORT}} -sv_bind 0.0.0.0 +http_startserver +sv_maxplayers {{MAX_PLAYERS}} +map {{SRV_MAP}} +sv_servername \"{{SRV_NAME}}\"",
+    "config": {
+        "files": "{\r\n    \"hosting.cfg\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"sv_servername\": \"\\\"{{server.build.env.SRV_NAME}}\\\"\",\r\n            \"http_password\": \"\\\"{{server.build.env.RCON_PW}}\\\"\",\r\n            \"g_pinglimit\": \"{{server.build.env.MAX_PING}}\",\r\n            \"g_pingLimitTimer\": \"{{server.build.env.PING_TIMER}}\",\r\n            \"wm_timeScale\": \"{{server.build.env.DAY_SPEED}}\",\r\n            \"wm_timeScaleWeather\": \"{{server.build.env.WEATHER_SPEED}}\",\r\n            \"wm_timeScaleNight\": \"{{server.build.env.NIGHT_SPEED}}\",\r\n            \"wm_timeOffset\": \"{{server.build.env.TIME_OFFSET}}\",\r\n            \"sv_noBannedAccounts\": \"{{server.build.env.BANNED_ACCS}}\",\r\n            \"sv_motd\": \"\\\"{{server.build.env.SRV_MOTD}}\\\"\",\r\n            \"sv_url\": \"\\\"{{server.build.env.SRV_URL}}\\\"\",\r\n            \"sv_maxuptime\": \"{{server.build.env.SRV_UPTIME}}\",\r\n            \"g_playerHealthRegen\": \"{{server.build.env.HEALTH_REGEN}}\",\r\n            \"g_playerFoodDecay\": \"{{server.build.env.FOOD_DECAY}}\",\r\n            \"g_playerFoodDecaySprinting\": \"{{server.build.env.FOOD_DECAYSP}}\",\r\n            \"g_playerWaterDecay\": \"{{server.build.env.WATER_DECAY}}\",\r\n            \"g_playerWaterDecaySprinting\": \"{{server.build.env.WATER_DECAYSP}}\",\r\n            \"g_craftingSpeedMultiplier\": \"{{server.build.env.CRAFT_SPEED}}\",\r\n            \"asm_hordeCooldown\": \"{{server.build.env.SPAWN_HORD}}\",\r\n            \"pcs_maxCorpses\": \"{{server.build.env.MAX_CORPS}}\",\r\n            \"pcs_maxCorpseTime\": \"{{server.build.env.TIME_CORPS}}\",\r\n            \"steam_ugc\": \"{{server.build.env.SRV_MODS}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Starting VoIP Server\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\nclear\r\nRED='\\033[0;31m'\r\nGREEN='\\033[0;32m'\r\nYELLOW='\\033[1;33m'\r\nBLUE='\\033[0;34m'\r\nNC='\\033[0m'\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}Miscreated Installscript${NC}\"\r\necho -e \"${YELLOW}Egg by gOOvER | https:\/\/goover.dev${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates jq dos2unix\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}download and install steamcmd. please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\n## install game using steamcmd\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${YELLOW}install game using steamcmd. please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update 1007 +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n# add below your custom commands if needed\r\n\r\nFILE=$HOME\/hosting.cfg\r\nif [ -f \"$FILE\" ]; then\r\n  echo -e \"${BLUE}-------------------------------------------------${NC}\"\r\n  echo -e \"${GREEN}hosting.cfg found.${NC}\"\r\n  echo -e \"${BLUE}-------------------------------------------------${NC}\"\r\nelse  \r\n  echo -e \"${BLUE}-------------------------------------------------${NC}\"\r\n  echo -e \"${RED}No hosting.cfg found. Downloading default...${NC}\"\r\n  echo -e \"${BLUE}-------------------------------------------------${NC}\"\r\n  cd $HOME\r\n  curl -sSL -o hosting.cfg https:\/\/raw.githubusercontent.com\/pteroeggsx\/egg-miscreated\/main\/hosting.cfg\r\n  echo -e \"${GREEN}..done..${NC}\"\r\nfi\r\n\r\n## install end\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${GREEN}Installation completed...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"",
+            "container": "ghcr.io\/goover\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Server Name",
+            "description": "Name of the Server !! NO SPACES ALLOWED !!",
+            "env_variable": "SRV_NAME",
+            "default_value": "goover.dev - Miscreated Pterodactyl Egg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Server MOTD",
+            "description": "Server motd to display when players join the server",
+            "env_variable": "SRV_MOTD",
+            "default_value": "Miscreated Pterodactyl Egg from: https:\/\/discord.goover.dev\"",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Server URL",
+            "description": "Server url to display when players join the server. This is a briefly displayed message.",
+            "env_variable": "SRV_URL",
+            "default_value": "https:\/\/discord.goover.dev",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|url",
+            "field_type": "text"
+        },
+        {
+            "name": "Maximum Players",
+            "description": "Specifies the maximum number of players that can play on the server simultaneously.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "50",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:1,4",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Map",
+            "description": "Map of the Server",
+            "env_variable": "SRV_MAP",
+            "default_value": "islands",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "No banned Accounts",
+            "description": "Don't allow any banned steam accounts to join (or those with a private profile)",
+            "env_variable": "BANNED_ACCS",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Server uptime",
+            "description": "Maximum server uptime until restart in hours, default: 24 (whitelisted), 12 otherwise. Cannot exceed 24 hours",
+            "env_variable": "SRV_UPTIME",
+            "default_value": "24",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,24",
+            "field_type": "text"
+        },
+        {
+            "name": "HTTP Password",
+            "description": "The password used to connect via rcon",
+            "env_variable": "RCON_PW",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Ping Limit",
+            "description": "Max ping a player can have before being kicked. 0=disabled",
+            "env_variable": "MAX_PING",
+            "default_value": "1000",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:0,1000",
+            "field_type": "text"
+        },
+        {
+            "name": "Ping Limit Timer",
+            "description": "Time in seconds after which a player will be kicked if they are over the specified ping limit",
+            "env_variable": "PING_TIMER",
+            "default_value": "15",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "Time of day speed",
+            "description": "Scale time of day speed",
+            "env_variable": "DAY_SPEED",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Time of weather speed",
+            "description": "Scale of weather speed",
+            "env_variable": "WEATHER_SPEED",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Time of night speed",
+            "description": "Scale of night speed (relative to day)",
+            "env_variable": "NIGHT_SPEED",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Time Offset",
+            "description": "Time offset to system time, negative = random offset, use 24-x for real negative offsets (as positive numbers)",
+            "env_variable": "TIME_OFFSET",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Health regeneration speed",
+            "description": "Health regeneration speed",
+            "env_variable": "HEALTH_REGEN",
+            "default_value": "0.111",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Food decay speed",
+            "description": "Food decay speed",
+            "env_variable": "FOOD_DECAY",
+            "default_value": "0.2777",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Food decay speed when sprinting",
+            "description": "Food decay speed when sprinting",
+            "env_variable": "FOOD_DECAYSP",
+            "default_value": "0.34722",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Water decay speed",
+            "description": "Water decay speed",
+            "env_variable": "WATER_DECAY",
+            "default_value": "0.4861",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Water decay speed when sprinting",
+            "description": "Water decay speed when sprinting",
+            "env_variable": "WATER_DECAYSP",
+            "default_value": "0.607638",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Crafting speed multiplier",
+            "description": "Scalar to accelerate crafting times",
+            "env_variable": "CRAFT_SPEED",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "cooldown on spawning hordes",
+            "description": "et the min cooldown on spawning hordes, (in seconds)",
+            "env_variable": "SPAWN_HORD",
+            "default_value": "900",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Maximum number of player corpses",
+            "description": "Set the maximum number of player corpses",
+            "env_variable": "MAX_CORPS",
+            "default_value": "20",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Maximum time before a player corpse will despawn",
+            "description": "Set the maximum time before a player corpse will despawn (in seconds)",
+            "env_variable": "TIME_CORPS",
+            "default_value": "1200",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Mods",
+            "description": "add in the mod IDs from the mods you want to run on your server, separating each by a comma.",
+            "env_variable": "SRV_MODS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "Game ID !!DO NOT CHANGE!!",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "302200",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "WINDOWS_INSTALL",
+            "description": "!!DO NOT CHANGE!!",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "WINEARCH",
+            "description": "",
+            "env_variable": "WINEARCH",
+            "default_value": "win64",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "WINEDEBUG",
+            "description": "",
+            "env_variable": "WINEDEBUG",
+            "default_value": "-all",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "WINEPATH",
+            "description": "",
+            "env_variable": "WINEPATH",
+            "default_value": "\/home\/container",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "WINETRICKS_RUN",
+            "description": "",
+            "env_variable": "WINETRICKS_RUN",
+            "default_value": "vcrun2019 dotnet7 corefonts",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string",
+            "field_type": "text"
+        }
+    ]
+}
