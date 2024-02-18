@@ -1,3 +1,5 @@
-## !!! PRIVATE EGG !!!
+## !!! Discord Only Egg !!!
 
-Private Egg. Pls contact me on Discord for this Egg
+You find the egg on my discord
+
+https://discord.goover.dev
