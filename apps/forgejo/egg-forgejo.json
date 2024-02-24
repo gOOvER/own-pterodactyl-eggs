@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-10-28T08:10:07+02:00",
+    "exported_at": "2024-02-24T12:52:40+01:00",
     "name": "Forgejo",
     "author": "eggs@goover.dev",
     "description": "Forgejo is a self-hosted lightweight software forge.\r\nEasy to install and low maintenance, it just does the job.\r\n\r\nBrought to you by an inclusive community under the umbrella of Codeberg e.V., a democratic non-profit organization, Forgejo can be trusted to be exclusively Free Software. It includes and cooperates with hundreds of projects (Gitea, Git, ...) and is focused on scaling, federation and privacy.",
@@ -13,7 +13,7 @@
         "ghcr.io\/goover\/debian:12-bookworm": "ghcr.io\/goover\/debian:12-bookworm"
     },
     "file_denylist": [],
-    "startup": ".\/forgejo web -p {{SERVER_PORT}} -c .\/app.ini",
+    "startup": ".\/forgejo web -p {{SERVER_PORT}} -c .\/custom\/app.ini",
     "config": {
         "files": "{\r\n    \"custom\/app.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"DISABLE_SSH\": \"DISABLE_SSH: {{server.build.env.DISABLE_SSH}}\",\r\n            \"SSH_PORT\": \"SSH_PORT: {{server.build.env.SSH_PORT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Listen: \"\r\n}",
