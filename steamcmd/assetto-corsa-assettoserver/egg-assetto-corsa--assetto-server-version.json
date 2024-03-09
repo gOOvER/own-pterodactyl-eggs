@@ -6,7 +6,7 @@
     },
     "exported_at": "2023-09-12T10:38:09+02:00",
     "name": "Assetto Corsa - AssettoServer Version",
-    "author": "info@goover.de",
+    "author": "eggs@goover.dev",
     "description": "AssettoServer is a custom game server for Assetto Corsa developed with freeroam in mind. It greatly improves upon the default game server by fixing various security issues and providing new features like AI traffic and dynamic weather.\r\n\r\nRace\/Quali sessions and lap times are not supported yet. Only use this if you want to run a practice-only freeroam server.",
     "features": [
         "steam_disk_space"

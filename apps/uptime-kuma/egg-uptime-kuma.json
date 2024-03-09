@@ -6,7 +6,7 @@
     },
     "exported_at": "2023-11-20T15:51:24+01:00",
     "name": "Uptime Kuma",
-    "author": "info@goover.de",
+    "author": "eggs@goover.dev",
     "description": "Uptime Kuma is an easy-to-use self-hosted monitoring tool.",
     "features": null,
     "docker_images": {
