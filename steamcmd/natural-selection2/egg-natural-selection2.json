@@ -8,7 +8,9 @@
     "name": "Natural Selection 2",
     "author": "eggs@goover.dev",
     "description": "Natural Selection 2 is a First Person Shooter and Real Time Stategy game rolled into one! Each team, alien and human, has a Commander.",
-    "features": null,
+    "features": [
+        "steam_disk_space"
+    ],
     "docker_images": {
         "ghcr.io\/goover\/steamcmd:debian": "ghcr.io\/goover\/steamcmd:debian"
     },

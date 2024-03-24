@@ -8,7 +8,9 @@
     "name": "The Warhorn",
     "author": "eggs@goover.dev",
     "description": "The Warhorn is a medieval RPG mixed with city-building and management elements. Play as an adventurer who decided to leave his dull life as a lumberjack ...",
-    "features": null,
+    "features": [
+        "steam_disk_space"
+    ],
     "docker_images": {
         "ghcr.io\/goover\/wine:stable": "ghcr.io\/goover\/wine:stable"
     },

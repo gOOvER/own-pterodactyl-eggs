@@ -8,7 +8,9 @@
     "name": "Wurm Unlimited",
     "author": "eggs@goover.dev",
     "description": "Wurm Unlimited is the second game to be released by Code Club AB and features much of the same content as Wurm Online but is not linked to the official servers. Instead players are able to host their own servers, either locally or on a dedicated machine, so that they may have their own private world with their friends or even open the world publicly for everyone to enjoy.",
-    "features": null,
+    "features": [
+        "steam_disk_space"
+    ],
     "docker_images": {
         "ghcr.io\/goover\/games:wurm": "ghcr.io\/goover\/games:wurm"
     },
