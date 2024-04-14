@@ -1,0 +1,110 @@
+# Learn more about Opengist configuration here:
+# https://github.com/thomiceli/opengist/blob/master/docs/configuration/index.md
+# https://github.com/thomiceli/opengist/blob/master/docs/configuration/cheat-sheet.md
+
+# Set the log level to one of the following: trace, debug, info, warn, error, fatal, panic. Default: warn
+log-level: warn
+
+# Set the log output to one or more of the following: `stdout`, `file`. Default: stdout,file
+log-output: stdout,file
+
+# Public URL to access to Opengist
+external-url:
+
+# Directory where Opengist will store its data. Default: ~/.opengist/
+opengist-home:
+
+# Name of the SQLite database file. Default: opengist.db
+db-filename: opengist.db
+
+# Enable or disable the code search index (either `true` or `false`). Default: true
+index.enabled: true
+
+# Name of the directory where the code search index is stored. Default: opengist.index
+index.dirname: opengist.index
+
+# Default branch name used by Opengist when initializing Git repositories.
+# If not set, uses the Git default branch name. See https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup#_new_default_branch
+git.default-branch:
+
+# Set the journal mode for SQLite. Default: WAL
+# See https://www.sqlite.org/pragma.html#pragma_journal_mode
+sqlite.journal-mode: WAL
+
+
+# HTTP server configuration
+# Host to bind to. Default: 0.0.0.0
+http.host: 0.0.0.0
+
+# Port to bind to. Default: 6157
+http.port: 6157
+
+# Enable or disable git operations (clone, pull, push) via HTTP (either `true` or `false`). Default: true
+http.git-enabled: true
+
+# SSH built-in server configuration
+# Note: it is not using the SSH daemon from your machine (yet)
+
+# Enable or disable SSH built-in server
+# for git operations (clone, pull, push) via SSH (either `true` or `false`). Default: true
+ssh.git-enabled: true
+
+# Host to bind to. Default: 0.0.0.0
+ssh.host: 0.0.0.0
+
+# Port to bind to. Default: 2222
+# Note: it cannot be the same port as the SSH daemon if it's currently running
+# If you want to use the port 22 for the built-in SSH server,
+# you can either change the port of the SSH daemon or stop it
+ssh.port: 2222
+
+# Public domain for the Git SSH connection, if it has to be different from the HTTP one.
+# If not set, uses the URL from the request
+ssh.external-domain:
+
+# Path or alias to ssh-keygen executable. Default: ssh-keygen
+ssh.keygen-executable: ssh-keygen
+
+
+# OAuth2 configuration
+# The callback/redirect URL must be http://opengist.url/oauth/<github|gitlab|gitea|openid-connect>/callback
+
+# To create a new OAuth2 application using GitHub : https://github.com/settings/applications/new
+github.client-key:
+github.secret:
+
+# To create a new OAuth2 application using Gitlab : https://gitlab.com/-/user_settings/applications
+gitlab.client-key:
+gitlab.secret:
+# URL of the Gitlab instance. Default: https://gitlab.com/
+gitlab.url: https://gitlab.com/
+# The name of the GitLab instance. It is displayed in the OAuth login button. Default: GitLab
+gitlab.name: GitLab
+
+# To create a new OAuth2 application using Gitea : https://gitea.domain/user/settings/applications
+gitea.client-key:
+gitea.secret:
+# URL of the Gitea instance. Default: https://gitea.com/
+gitea.url: https://gitea.com/
+# The name of the Gitea instance. It is displayed in the OAuth login button. Default: Gitea
+gitea.name: Gitea
+
+# To create a new OAuth2 application using OpenID Connect:
+oidc.client-key:
+oidc.secret:
+# Discovery endpoint of the OpenID provider. Generally something like http://auth.example.com/.well-known/openid-configuration
+oidc.discovery-url:
+
+
+# Custom assets
+# Add your own custom assets, that are files relatives to $opengist-home/custom/
+custom.logo:
+custom.favicon:
+
+# Static pages in footer (like legal notices, privacy policy, etc.)
+# The path can be a URL or a relative path to a file in the $opengist-home/custom/ directory
+custom.static-links:
+#  - name: Gitea
+#    path: https://gitea.com
+#  - name: Legal notices
+#    path: legal.html
