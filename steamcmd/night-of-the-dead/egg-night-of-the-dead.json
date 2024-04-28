@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-04-26T15:44:21+02:00",
+    "exported_at": "2024-04-28T08:50:51+02:00",
     "name": "Night of the Dead",
     "author": "eggs@goover.dev",
     "description": null,
@@ -13,7 +13,7 @@
         "ghcr.io\/goover\/wine:staging": "ghcr.io\/goover\/wine:staging"
     },
     "file_denylist": [],
-    "startup": "wine .\/LF\/Binaries\/LFServer-Win64-Shipping.exe ?listen -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}}",
+    "startup": "wine .\/LF\/Binaries\/Win64\/LFServer-Win64-Shipping.exe ?listen -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} & NOD_PID=$! ; tail -c0 -F .\/LF\/Saved\/Logs\/LF.log --pid=$NOD_PID",
     "config": {
         "files": "{\r\n    \".\/LF\/Saved\/Config\/ServerSettings.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"ServerName=\": \"ServerName={{server.build.env.SRV_NAME}}\",\r\n            \"Password=\": \"Password={{server.build.env.SRV_PW}}\",\r\n            \"MaxPlayers=\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\",\r\n            \"IngameAdminPassword=\": \"IngameAdminPassword={{server.build.env.ADMIN_PW}}\",\r\n            \"DefaultMessageOfTheDay=\": \"DefaultMessageOfTheDay={{server.build.env.MOTD}}\",\r\n            \"SaveName=\": \"SaveName={{server.build.env.SAVE_NAME}}\",\r\n            \"Difficulty=\": \"Difficulty={{server.build.env.DIFFICULTY}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Start Session Complete\"\r\n}",
