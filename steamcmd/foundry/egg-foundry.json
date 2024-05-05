@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-05-05T09:08:45+02:00",
+    "exported_at": "2024-05-05T14:32:34+02:00",
     "name": "Foundry",
     "author": "eggs@goover.dev",
     "description": "Build a factory optimized to perfection or an artistic masterpiece in an infinite voxel world. Mine and harvest resources, automate your ever-growing production lines and manage complex systems while researching your way to mechanical mastery in FOUNDRY.",
@@ -15,7 +15,7 @@
         "ghcr.io\/goover\/wine:staging": "ghcr.io\/goover\/wine:staging"
     },
     "file_denylist": [],
-    "startup": "xvfb $DISPLAY -screen 0 1024x768x16; DISPLAY=:0.0 xvfb-run wine \/home\/container\/FoundryDedicatedServer.exe -log -server_port={{SERVER_PORT}} -server_query_port={{QUERY_PORT}}",
+    "startup": "xvfb :0 -screen 0 1024x768x16; DISPLAY=:0.0 xvfb-run wine \/home\/container\/FoundryDedicatedServer.exe -log",
     "config": {
         "files": "{\r\n    \"App.cfg\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server_name\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"server_password\": \"{{server.build.env.SRV_PW}}\",\r\n            \"server_world_name\": \"{{server.build.env.WORLD_NAME}}\",\r\n            \"server_max_players\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"server_port\": \"{{server.build.default.port}}\",\r\n            \"server_query_port\": \"{{server.build.env.QUERY_PORT}}\",\r\n            \"pause_server_when_empty\": \"{{server.build.env.PAUSE_SERVER}}\",\r\n            \"autosave_interval\": \"{{server.build.env.AUTOSAVE_INTERVAL}}\",\r\n            \"server_is_public\": \"{{server.build.env.PUBLIC_SERVER}}\",\r\n            \"map_seed\": \"{{server.build.env.MAP_SEED}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Dedicated server is now running!\"\r\n}",
@@ -81,26 +81,6 @@
             "field_type": "text"
         },
         {
-            "name": "[SERVER] Map Seed",
-            "description": "Sets the map seed used to generate the world.",
-            "env_variable": "MAP_SEED",
-            "default_value": "42938743982",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric",
-            "field_type": "text"
-        },
-        {
-            "name": "[SERVER] Max Players",
-            "description": "This sets the max amount of players on a server.",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "32",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric",
-            "field_type": "text"
-        },
-        {
             "name": "[SERVER] Server Public",
             "description": "Sets whether the server is listed on the Steam server browser.",
             "env_variable": "PUBLIC_SERVER",
@@ -116,8 +96,28 @@
             "env_variable": "QUERY_PORT",
             "default_value": "",
             "user_viewable": true,
-            "user_editable": false,
+            "user_editable": true,
             "rules": "required|integer|between:1024,65536",
+            "field_type": "text"
+        },
+        {
+            "name": "[SERVER] Map Seed",
+            "description": "Sets the map seed used to generate the world.",
+            "env_variable": "MAP_SEED",
+            "default_value": "42938743982",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "[SERVER] Server Max Players",
+            "description": "This sets the max amount of players on a server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "32",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
             "field_type": "text"
         },
         {
@@ -161,7 +161,7 @@
             "field_type": "text"
         },
         {
-            "name": "[WINE] XVFB",
+            "name": "XVFB",
             "description": "",
             "env_variable": "XVFB",
             "default_value": "1",
